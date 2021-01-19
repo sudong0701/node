@@ -31,8 +31,9 @@
             },
             register() {
                 let params = {username: this.username, password: this.password}
-                this.$axios.post(`/register`, params)
+                this.$axios.post(`${ml_request.common}/register`, params)
                     .then((res)=> {
+                    console.log(res)
                         this.$toast.default({
                             content: res.note
                         })

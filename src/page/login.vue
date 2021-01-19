@@ -28,7 +28,7 @@ export default {
     methods: {
         login() {
             let params = {username: this.username, password: this.password}
-            this.$axios.post(`/login`, params)
+            this.$axios.post(`${ml_request.common}/login`, params)
                 .then((res)=> {
                     this.$toast.default({
                         content: res.note

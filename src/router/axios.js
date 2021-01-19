@@ -32,6 +32,7 @@ axios.interceptors.response.use(
         }
     },
     error => {
+        console.log(error)
         if (error.response) {
             Vue.prototype.$toast.default({
                 content: '服务器错误'
