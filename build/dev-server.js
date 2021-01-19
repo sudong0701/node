@@ -133,6 +133,6 @@ app.use(function (err, req, res, next) {
     }
 });
 
-app.listen(6666, ()=> {
-    console.log('服务器开启在6666端口....')
+app.listen(21, ()=> {
+    console.log('服务器开启在21端口....')
 })
