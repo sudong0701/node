@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const url = require('url');
 const logger = require('morgan');
+const cors = require('cors')
 const cookieParser = require('cookie-parser');
 // const session = require('express-session');
 // const MssqlStore = require('connect-mssql')(session);
@@ -14,6 +15,7 @@ const ueditor = require("ueditor");
 const expressJwt = require('express-jwt');
 
 require("body-parser-xml")(bodyParser);
+app.use(cors())
 app.use(mutipart({uploadDir: path.join(__dirname, '../temp')}));
 app.use(logger('dev'));
 app.use(bodyParser.json());
