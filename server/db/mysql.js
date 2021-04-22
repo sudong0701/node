@@ -4,9 +4,10 @@ const db = mysql.createConnection({
     host: "127.0.0.1",
     port: '3306',
     user: "root",
-    password: "dNSxhsbWaxNPhCRn",
+    password: "123456",
     database: "nodemysql"
 })
+
 
 db.sql = function (sql, data = '') {
     return new Promise((resolve, reject)=> {
@@ -19,6 +20,7 @@ db.sql = function (sql, data = '') {
         })
     })
 }
+
 
 db.connect( (err)=> {
     if(err) throw err
