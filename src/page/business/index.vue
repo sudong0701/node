@@ -1,34 +1,20 @@
 <template>
     <div class="index">
-        <sd-header :title="title"></sd-header>
+        <sd-header :title="title" :isLeft="false"></sd-header>
 
-        <sdSwipe @change="swipeChange" :isAuto="false" :isLoop="false" :swipeIndex="swipeIndex">
-            <!--主页-->
-            <sdSwipeItem style="height: 100%; padding-top: 1rem">
-                <!--<sd-swipe>-->
-                    <!--<sd-swipe-item>-->
-                        <!--<img src="" alt="">-->
-                    <!--</sd-swipe-item>-->
-                    <!--<sd-swipe-item>-->
-                        <!--<img src="" alt="">-->
-                    <!--</sd-swipe-item>-->
-                    <!--<sd-swipe-item>-->
-                        <!--<img src="" alt="">-->
-                    <!--</sd-swipe-item>-->
-                <!--</sd-swipe>-->
+        <div class="home">
+            <div v-show="swipeIndex == 0" class="homeItem">
                 <div @click="goWrite">填写个人信息</div>
-            </sdSwipeItem>
-            <sdSwipeItem>
-                <!--购物车-->
-            </sdSwipeItem>
+            </div>
+            <div v-show="swipeIndex == 1" class="homeItem">
 
-            <!--我的-->
-            <sdSwipeItem>
-                <div>
-
+            </div>
+            <div v-show="swipeIndex == 2" class="homeItem">
+                <div class="userItem" v-for="(item, key) in userArr" :key="key">
+                    {{item.username}}
                 </div>
-            </sdSwipeItem>
-        </sdSwipe>
+            </div>
+        </div>
 
         <sd-tabbar fixed v-model="active" @change="changeTab" ref="tabbar">
             <sdTabbarItem icon="home" :dot="true">主页</sdTabbarItem>
@@ -86,14 +72,6 @@
                             console.log(res.data)
                         }
                     })
-                let arr = [1,5,9,0,45,98,54,12,12,0,1,5,88]
-                let arr1 = [], nums = [1,3,1,9]
-                for(let i = 0; i < nums.length - 1; i++) {
-                    for(let j = i+1; j < nums.length; j++) {
-                        arr1.push(Math.abs(nums[i] - nums[j]))
-                    }
-                }
-                console.log(arr1)
 
             },
             changeTab(e) {
@@ -205,5 +183,14 @@
         padding: 0.1rem 0.2rem;
         outline: none;
         background-color: #fafafa;
+    }
+    .home {
+        .homeItem {
+            padding: 0 0.32rem;
+        }
+    }
+    .userItem {
+        height: 0.72rem;
+        line-height: 0.72rem;
     }
 </style>

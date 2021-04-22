@@ -1,6 +1,6 @@
 <template>
     <div class="write">
-        <sd-header :title="title"></sd-header>
+        <sd-header :title="title" @click-left="goBack"></sd-header>
         <div>
             <sd-field v-model="userInfo.name" label="姓名:" placeholder="请输入姓名"></sd-field>
             <sd-field v-model="userInfo.sex" label="性别:" placeholder="请选择性别" readonly @click="showSex"></sd-field>
@@ -65,6 +65,10 @@
             this.initData()
         },
         methods: {
+            goBack() {
+                console.log(123)
+                this.$router.go(-1)
+            },
             initData() {
                 const params = {userID: sessionStorage.getItem('userId')}
                 console.log(params)
