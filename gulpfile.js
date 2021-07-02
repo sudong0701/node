@@ -1,14 +1,15 @@
-'use strict'
-
-var gulp = require('gulp');
-var watch = require('gulp-watch');
-var babel = require('gulp-babel');
-let sourcemaps = require('gulp-sourcemaps');
-let uglify = require('gulp-uglify');
+const gulp = require('gulp');
+const watch = require('gulp-watch');
+const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
+const gulpTs = require('gulp-typescript')
+const tsProject = gulpTs.createProject('tsconfig.json');
 
 gulp.task('compile', () => {
-    return gulp.src('server/**/*.js')
+    return gulp.src(['server/**/*.js', 'server/**/*.ts'])
         .pipe(sourcemaps.init())
+        .pipe(tsProject())
         .pipe(babel())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/server'));
@@ -31,20 +32,17 @@ gulp.task('copy3', () => {
 });
 
 gulp.task('watch', () => {
-    return gulp.src('server/**/*.js')
+    return gulp.src(['server/**/*.js', 'server/**/*.ts'])
         .pipe(watch('server/**/*.js', {
             verbose: true
         }))
         .pipe(sourcemaps.init())
+        .pipe(tsProject())
         .pipe(babel())
         .pipe(uglify({ mangle: false }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/server/'));
 });
 
-gulp.task('default', () => {
-    gulp.start('compile');
-    gulp.start('copy1');
-    gulp.start('copy2');
-    gulp.start('copy3');
-});
+
+gulp.task('default', gulp.series(gulp.parallel('compile', 'copy1', 'copy2', 'copy3')))
