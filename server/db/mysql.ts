@@ -27,4 +27,9 @@ db.connect( (err)=> {
     console.log('连接成功')
 })
 
+
 module.exports = db
+
+export {
+    
+}

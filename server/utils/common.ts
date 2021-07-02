@@ -1,4 +1,4 @@
-const generateID = function () {
+const generateID = function ():string {
     let d = new Date().getTime();
     let uuid = 'xxxxxxxxxyxxxxxxxx'.replace(/[xy]/g, function (c) {
         let r = (d + Math.random() * 16) % 16 | 0;
@@ -13,7 +13,7 @@ const generateID = function () {
  @param {String}a 变量
  @return {Boolean} 是否为空
  */
-const isEmpty = function (a) {
+const isEmpty = function (a:any):boolean {
     if (a === undefined || a === 'undefined' || a === null || a === 'null' || a === '' ||
         JSON.stringify(a) === '{}' || JSON.stringify(a) === '[]') {
         return true

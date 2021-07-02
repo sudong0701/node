@@ -1,3 +1,5 @@
+const db = require('./db/mysql')
+
 module.exports = function (app) {
     app.get("/createdb", (req,res)=> {
         let sql = "CREATE DATABASE nodemysql"

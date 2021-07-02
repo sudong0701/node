@@ -21,8 +21,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-        username: '',
-        password: ''
+        username: '1006364428',
+        password: '514273'
     }
   },
     methods: {
