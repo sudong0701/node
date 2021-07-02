@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname,'../static')));
 app.use('/public',express.static(path.join(__dirname,'../public')));
 //const mssql_251 = require('../dist/server/db/mssql_251');
 
-const db = require('../server/db/mysql');
+const db = require('../dist/server/db/mysql');
 
 //使用中间件验证token合法性
 const secret = 'hwason';
@@ -113,7 +113,7 @@ app.use("/static/ueditor/ue", ueditor(path.join(__dirname, '../public/upload'), 
     }})
 );
 
-require('../server/index')(app)
+require('../dist/server/index')(app)
 
 /*解决请求跨域请求*/
 app.all('*', function(req, res, next) {
