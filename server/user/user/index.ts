@@ -39,7 +39,7 @@ module.exports = app => {
     //注册接口
     app.post('/register', function (req, res, next) {
         try {
-            let query = req.body, username = query.username, password = query.password, id = common.generateID()
+            let query:loginReauestConfig = req.body, username:string = query.username, password:string = query.password, id:string = common.generateID()
             if (!username) {
                 const sendData: sendDataConfig<undefined> = { note: '账号不能为空', code: 201 }
                 res.send(sendData)
@@ -98,7 +98,7 @@ module.exports = app => {
 
     //查询所有用户
     app.get('/queryAllUser', function (req, res, next) {
-        const sql_queryAll = `select * from user`
+        const sql_queryAll:string = `select * from user`
         mysql.sql(sql_queryAll).then((result: Array<userInfoConfig>) => {
             const sendData: sendDataConfig<Array<userInfoConfig>> = { note: '操作成功', code: 200, data: result }
             res.send(sendData)
@@ -110,19 +110,19 @@ module.exports = app => {
 
     //删除用户
     app.post('/deleteUser', function (req, res, next) {
-        const userID = req.body.userID
+        const userID:string = req.body.userID
         if (common.isEmpty(userID)) {
             const sendData: sendDataConfig<undefined> = { note: '参数错误', code: 201 }
             res.send(sendData)
             return
         }
-        const sql_query = `select * from user where id = '${userID}'`
+        const sql_query:string = `select * from user where id = '${userID}'`
         mysql.sql(sql_query).then((result) => {
             if (!result.length) {   //没有该条数据
                 const sendData: sendDataConfig<undefined> = { note: '该用户不存在', code: 201 }
                 res.send(sendData)
             } else {
-                const sql_delete = `delete from user where id = '${userID}'`
+                const sql_delete:string = `delete from user where id = '${userID}'`
                 mysql.sql(sql_delete).then((result) => {
                     const sendData: sendDataConfig<undefined> = { note: '删除成功', code: 200 }
                     res.send(sendData)
