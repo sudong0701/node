@@ -1,25 +1,17 @@
 {
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "allowJs": true,
+    "target": "esnext",
     "module": "esnext",
-    "esModuleInterop": true,
-    "target": "es5",
     "moduleResolution": "node",
-    "isolatedModules": true,
-    "lib": [
-      "dom",
-      "es5",
-      "es2015.promise"
-    ],
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "suppressImplicitAnyIndexErrors":true,
+    "jsx": "preserve",
+    "noUnusedParameters": false,
     "sourceMap": true,
-    "pretty": true
-  }
+    "lib": ["esnext", "dom"],
+    "plugins": []
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/axios.ts", "src/main.ts"]
 }

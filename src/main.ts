@@ -1,25 +1,38 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-import axios from './router/axios.js'
-import moment from 'moment'
-import sdUI from 'sudong-ui'
+import './index.css'
+import './index.scss'
+import './assets/icon/iconfont.css'
+import './assets/css/normalize.scss'
+import { router } from './router'
+import { create, NButton } from 'naive-ui'
+import store from './store'
 
-Vue.use(sdUI)
+import { installMlUI } from './components'
 
-import 'sudong-ui/packages/theme-default/lib/index.min.css'
+import { ElButton, ElSelect, ElInput } from 'element-plus';
+import 'element-plus/lib/theme-chalk/index.css';
+import 'element-plus/packages/theme-chalk/src/base.scss'
 
+const app = createApp(App)
 
-Vue.prototype.$axios = axios
-Vue.prototype.$moment = moment
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+const naive = create({
+    components: [NButton]
 })
+
+installMlUI(app)
+
+app.use(naive)
+
+app.component(ElButton.name, ElButton);
+app.component(ElSelect.name, ElSelect);
+app.component(ElInput.name, ElInput);
+
+app.use(router)
+
+app.use(store)
+
+app.mount('#app')
+
+
+

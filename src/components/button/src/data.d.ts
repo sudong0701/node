@@ -1,0 +1,1 @@
+export type buttonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
