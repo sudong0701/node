@@ -4,7 +4,7 @@ const { getList, getDetail, newBlog, deleteBlog, updateBlog } = require('../cont
 const loginCheck = (req) => {
 	if (req.session.username) {
 		return Promise.resolve(() => {
-			new ErrorModel('尚未邓丽')
+			new ErrorModel('尚未登录')
 		})
 	}
 }
@@ -15,10 +15,19 @@ const handleBlogRouter = (req, res) => {
 
 	//获取博客列表
 	if (method === 'GET' && req.path === '/api/blog/list') {
-		const author = req.query.author || ''
+		let author = req.query.author || ''
 		const keyword = req.query.keyword || ''
 		// const listData = getList(author, keyword)
 		// return new SuccessModel(listData)
+		if (req.query.isadmin) {
+			const loginCheckResult = loginCheck(req)
+			if (loginCheckResult) {
+				//未登录
+				return loginCheckResult
+			}
+			//查询自己的博客
+			author = req.session.username
+		}
 		const listResult = getList(author, keyword)
 		return listResult.then((listData) => {
 			return new SuccessModel(listData)

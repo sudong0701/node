@@ -118,13 +118,7 @@ export default defineComponent({
                 url: '/api/user/login',
                 data: loginInfo,
             }).then((res) => {
-                    setToken({
-                        access_token: res.data.access_token,
-                        token_type: res.data.token_type
-                    })
-                    router.push({
-                        name: "statistics"
-                    });
+                    console.log(res)
                 })
                 .catch(() => {});
         };

@@ -78,7 +78,7 @@ export const requestApi = <requestDataConfig, responseDataConfig>(params: params
                     if (params.isDefault) {
                         router.push('/')
                     }
-                    window.$message.error(res.note)
+                    window.$message.error(res.message)
                     reject(res)
                 }
             })
