@@ -2,10 +2,12 @@ const querystring = require('querystring')
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 const { set, get } = require('./src/db/redis')
+const { access } = require('./src/utils/log')
 
 const getCookieExpires = () => {
 	const d = new Date()
 	d.setTime(d.getTime() + 24 * 60 * 60 * 1000)
+	console.log('d.toGMTString() is', d.toGMTString())
 	return d.toGMTString()
 }
 
@@ -33,6 +35,9 @@ const getPostData = (req) => {
 }
 
 const serverHandle = (req, res) => {
+	//记录access 日志
+
+	access(`${req.method} -- ${req.url} -- ${req.headers['user-agent']} -- ${new Date().getTime()}`)
 	//设置返回格式 JSON
 	res.setHeader('Content-type', 'application/json')
 
@@ -87,6 +92,7 @@ const serverHandle = (req, res) => {
 					if (needSetCookie) {
 						res.setHeader('Set-Cookie', `userid=${userId}; path=/; httpOnly; expires=${getCookieExpires()}`)
 					}
+
 					res.end(
 						JSON.stringify(blogData)
 					)
