@@ -27,13 +27,7 @@ axios.interceptors.response.use(
         // IE 8-9
         if (response) {
             const result = response.data
-            if (result.code === 200) {
-                return result
-            } else {
-                window.$message.error(result.note)
-                router.push('/')
-                return result
-            }
+            return result
         }
 
     },
@@ -71,9 +65,6 @@ export const requestApi = <requestDataConfig, responseDataConfig>(params: params
                 
                 if (res && res.code === responseCode.success) {
                     resolve(res)
-                } else if (res.code === responseCode.tokenFailure) {
-                    window.$message.error('登录身份已失效，请重新登录！')
-                    router.push('/')
                 } else {
                     if (params.isDefault) {
                         router.push('/')
