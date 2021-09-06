@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <div class="login-content-bottom">望着不可谏，来者犹可追。</div>
+            <div class="login-content-bottom">往者不可谏，来者犹可追。</div>
         </div>
 
         <el-dialog title="提示" v-model="isShow" width="576px" top="25vh">
