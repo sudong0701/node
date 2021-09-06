@@ -2,7 +2,7 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
 const { getList, getDetail, newBlog, deleteBlog, updateBlog } = require('../controller/blog')
 //统一的登录验证
 const loginCheck = (req) => {
-	if (req.session.username) {
+	if (!req.session.username) {
 		return Promise.resolve(() => {
 			new ErrorModel('尚未登录')
 		})
