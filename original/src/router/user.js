@@ -17,7 +17,7 @@ const handleUserRouter = (req, res) => {
 				set(req.sessionId, req.session)
 				return new SuccessModel(data, '登录成功')
 			} else {
-				return new ErrorModel('登录失败')
+				return new ErrorModel('用户名或密码错误')
 			}
 		})
 	}
