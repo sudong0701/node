@@ -115,10 +115,12 @@ export default defineComponent({
             }
 
             requestApi<loginInfoConfig, userInfoConfig>({
-                url: '/api/user/login',
+                url: '/api/user/login',   //`${import.meta.env.VITE_APP_API}/api/user/login`
                 data: loginInfo,
             }).then((res) => {
-                    console.log(res)
+                    router.push({
+                        name: 'newBlog'
+                    })
                 })
                 .catch(() => {});
         };
