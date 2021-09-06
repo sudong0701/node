@@ -23,5 +23,6 @@ function exec(sql) {
 }
 
 module.exports = {
-	exec
+	exec,
+	escape: mysql.escape    //防止sql注入
 }
