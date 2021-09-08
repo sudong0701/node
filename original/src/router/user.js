@@ -19,6 +19,8 @@ const handleUserRouter = (req, res) => {
 			} else {
 				return new ErrorModel('用户名或密码错误')
 			}
+		}).catch((err) => {
+			console.log(err)
 		})
 	}
 }

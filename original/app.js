@@ -120,7 +120,7 @@ const serverHandle = (req, res) => {
 			res.write("404 Not Found\n")
 			res.end()
 		})
-	})
+	}).catch(()=>{})
 
 }
 
